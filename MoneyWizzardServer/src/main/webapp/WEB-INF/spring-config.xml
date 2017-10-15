@@ -1,0 +1,107 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-4.0.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd       
+http://www.springframework.org/schema/tx 
+http://www.springframework.org/schema/tx/spring-tx.xsd
+">
+	<!-- <aop:aspectj-autoproxy> </aop:aspectj-autoproxy> -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.moneywizzard" />
+	<mvc:annotation-driven />
+
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+	<bean
+		class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:/database.properties</value>
+			</list>
+		</property>
+	</bean>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/moneywizzard" />
+		<property name="username" value="root" />
+		<property name="password" value="admin" />
+	</bean>
+
+	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"/> -->
+	<!-- <bean id="velocityEngine" class="org.springframework.ui.velocity.VelocityEngineFactoryBean"> 
+		<property name="velocityProperties"> <value> resource.loader=class class.resource.loader.class=org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader 
+		</value> </property> </bean> -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+		<property name="packagesToScan" value="com.moneywizzard" />
+	</bean>
+
+
+	<!-- <bean id="mcfLogger" class="com.kiranasaver.mcf.common.MCFLoggerImpl" 
+		init-method="init"> </bean> <bean id="resourceManager" class="com.kiranasaver.mcf.common.ResourceManager" 
+		init-method="init"> </bean> -->
+
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+
+
+	<!-- <bean id="searchJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.SavedSearchGetJob" 
+		/> </bean> <bean id="searchTriggerJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.TriggerSearchJob" 
+		/> </bean> <bean id="purgeJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.PurgeJob" 
+		/> </bean> <bean id="flipkartDotComCrawlJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.FlipkartDotComCrawlJob" 
+		/> </bean> <bean id="ebayDotInCrawlJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.EbayDotInCrawlJob" 
+		/> </bean> <bean id="snapdealDotComCrawlJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.SnapdealDotComCrawlJob" 
+		/> </bean> <bean id="messageCountReset" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.MessageCountReset" 
+		/> </bean> <bean id="solrIndexingJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.SolrIndexingJob" 
+		/> </bean> <bean id="amazonDotInCrawlJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.AmazonDotInCrawlJob" 
+		/> </bean> <bean id="infibeamDotComCrawlJob" class="org.springframework.scheduling.quartz.JobDetailBean"> 
+		<property name="jobClass" value="com.kiranasaver.mcf.scheduler.InfibeamDotComCrawlJob" 
+		/> </bean> <bean id="cronScheduler" class="com.kiranasaver.mcf.scheduler.CRONScheduler" 
+		init-method="init"> <property name="jobs"> <list> <ref bean="searchJob" /> 
+		<ref bean="searchTriggerJob" /> <ref bean="purgeJob" /> <ref bean="flipkartDotComCrawlJob" 
+		/> <ref bean="ebayDotInCrawlJob" /> <ref bean="snapdealDotComCrawlJob" /> 
+		<ref bean="messageCountReset" /> <ref bean="solrIndexingJob" /> <ref bean="amazonDotInCrawlJob" 
+		/> <ref bean="infibeamDotComCrawlJob" /> </list> </property> </bean> -->
+
+	<!-- <bean id="cronScheduler" class="com.kiranasaver.mcf.scheduler.CRONScheduler" 
+		init-method="init"> <property name="jobDetails"> <list> <ref bean="FirstTaskJobDetail" 
+		/> <ref bean="SecondTaskJobDetail" /> </list> </property> </bean> -->
+
+
+
+</beans>
