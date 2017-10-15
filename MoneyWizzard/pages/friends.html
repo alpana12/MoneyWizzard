@@ -1,0 +1,80 @@
+<div class="well" style="text-align: center; background-color: #3CAA8D ; border: #3caa8d">
+    <a class="active section" style="color: #FFFFFF"><i class="glyphicon glyphicon-star"></i> FRIENDS</a>
+</div>
+
+<div id="addsuccessfull" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal" aria-label="close" ng-click="closeSuccessModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Friend added successfully!</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+
+        <div class="col-md-10" style="border: 1px solid #c7c9cb ;  border-radius: 10px">
+            <form class="navbar-form" role="search">
+
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" ng-model="searchFriend" name="searchFriend">
+                   <!-- <span class="input-group-btn"><button class="btn btn-default" type="submit" ng-click="searchModal()"><i class="glyphicon glyphicon-search"></i></button></span>-->
+                </div>
+
+                <button class="btn btn-default" type="submit" style="background-color: #3CAA8D  ; color: #FFFFFF " ng-click="openAddFriendModal()" ><i class="add user icon"></i>Add</button><!--data-toggle="modal" data-target="#addFriendModal"-->
+            </form>
+
+            <table class="table table-hover table-css" id="friendstable">
+                <tr>
+                    <th> Friends </th>
+                    <th style="text-align: center"> You owe </th>
+                    <th style="text-align: center"> You are owed </th>
+                </tr>
+                <tr ng-repeat="x in friends | filter:searchFriend">
+                    <td>{{x.personName}}</td>
+                    <td class ="columndata">{{x.youOwe}}</td>
+                    <td class ="columndata">{{x.youAreOwed}}</td>
+                </tr>
+            </table>
+
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+</div>
+
+<div id="addFriendModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal" aria-label="close" ng-click="hideAddFriendModal()">&times;</a>
+                <h4 class="modal-title">Add Friend</h4>
+
+            </div>
+            <div class="modal-body">
+                <form name="addfriendForm">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Email" ng-model="search.emailId" name="email" required>
+                            <span class="input-group-btn"><button class="btn btn-default" type="submit" ng-click="searchPerson()"><i class="glyphicon glyphicon-search"></i></button></span>
+                        </div>
+                        <span ng-show="signupform.email.$error.required && signupform.email.$touched">Provide an email address!</span>
+                        <span ng-show="signupform.email.$error.email">This email format is invalid!</span>
+
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="search.name" name="name" required
+                               ng-pattern="/^(\D)+$/" disabled>
+                    </div>
+
+                    <button type="submit" class="btn btn-default" ng-click="addFriend()" ng-disabled="(addfriendForm.$invalid)">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

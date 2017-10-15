@@ -1,0 +1,140 @@
+<div class="well" style="text-align: center; background-color: #3CAA8D ; border: #3caa8d">
+    <a class="active section" style="color: #FFFFFF"><i class="payment icon"></i>WIZZARD WALLET</a>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default" style="text-align: center;box-shadow: 3px 3px #ececec">
+                <div class="panel-heading" style="text-align: center">
+                    <h4>Wizzard Money</h4>
+                </div>
+                <div class="panel-body" >
+<!--
+                    <div class="form-group">
+                        <label><h4>Current Balance:</h4></label>
+                        <span class="label label-info">{{walletAmmount}}</span>
+                    </div>
+-->
+
+                    <div class="form-group">
+                        <h3 style="color: #3caa8d; ">Current Balance</h3>
+                    </div>
+                    <!--<br/>-->
+                    <div style="font-size: 8em;padding-top: 4%;padding-bottom: 10%;">
+                        <label ng-model="balance">{{walletAmmount | currency}}</label>
+                    </div>
+                    <!--<br/>
+                    <br/>-->
+
+                    <button type="submit" class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF " ng-click="openAddMoneyModal()">Add Money</button>
+                    <div id="addMoneyModal" class="modal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <a href="#" class="close" ng-click="closeAddMoneyModal()">&times;</a>
+                                    <h4 class="modal-title">Add Money</h4>
+                                </div>
+                                <div class="modal-body" >
+                                    <form name="addMoneyForm" novalidate >
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Amount" ng-model="wallet.amount" required name="amount" ng-pattern="/^(0|[1-9][0-9]*)$/">
+                                        </div>
+                                        <button type="submit" class="btn" ng-click="addMoney()" ng-disabled="addMoneyForm.$invalid">Add </button>
+                                        <br/>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="panel panel-default" style="box-shadow: 3px 3px #ececec">
+                <div class="panel-heading" style="text-align: center">
+                    <h4>Wizzard Transfers</h4>
+                </div>
+                <div class="panel-body" >
+                    <form name="paymentForm">
+                        <div class="form-group">
+                            <input type="text" id="selectedFriend" class="form-control" placeholder="To(Email)" ng-model="receiver" name="receiver" required list="emails">
+                            <input type="hidden" class="form-control" placeholder="To(Email or Phone number)" ng-model="receiver" name="receiver" list="emails">
+                            <datalist id="emails" ></datalist>
+                        </div>
+                        <!--<div class="form-group">
+                            <input type="input" class="form-control" placeholder="Payee Name" ng-model="receiverName" disabled>
+                        </div>-->
+                        <div class="form-group">
+                            <input type="input" class="form-control" placeholder="Amount" ng-model="transfer.amount" name="amount" required ng-pattern="/^(0|[1-9][0-9]*)$/">
+                        </div>
+                        <div class="form-group">
+                            <input type="input" class="form-control" placeholder="Comment" ng-model="transfer.comment">
+                        </div>
+                        <button type="submit" class="btn btn-default" ng-click="transferMoney()" ng-disabled="paymentForm.$invalid">Pay Now</button>
+                        <br/>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-default" style="box-shadow: 3px 3px #ececec">
+                <div class="panel-heading" style="text-align: center">
+                    <h4>Credits & Debits</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover" ng-show="accountHistory.length > 0">
+                        <thead>
+                        <th class="columndata">Sr. no</th>
+                        <th class="columndata">Friend</th>
+                        <th class="columndata">Amount</th>
+                        <th class="columndata">Transaction Date</th>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="history in accountHistory" ng-class="{'red': history.receive === false, 'green': history.receive === true}">
+                            <td class="columndata">{{$index+1}}</td>
+                            <td class="columndata" >{{history.personName}}</td>
+                            <td class="columndata">{{history.accountBalance}}</td>
+                            <td class="columndata">{{history.date}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div ng-hide="accountHistory.length > 0">No details available</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </div>
+</div>
+
+
+<div id="addsuccessfull" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" ng-click="closeSuccessModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Money added successfully!</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="transfersuccessfull" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" ng-click="closeTransferSuccessModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Transaction successful!</strong></div>
+            </div>
+        </div>
+    </div>
+</div>

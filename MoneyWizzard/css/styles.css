@@ -1,0 +1,137 @@
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background-color: #272C40;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 51px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    display: block;
+    transition: 0.3s;
+    color: #B29A6A;
+}
+
+.sidenav a:hover, .offcanvas a:focus {
+    color: #f1f1f1;
+    background-color: #2D3349;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    transition: margin-left .5s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+#carousel img {
+    height: 458px;
+    width: 100%;
+
+}
+
+.featureImg {
+    height: 300px;
+    width: 100%;
+    padding: 0;
+}
+
+.table-css tr th:nth-child(1) {
+    width: 60%;
+}
+
+.table-css tr td:nth-child(1) {
+    width: 60%;
+}
+
+.columndata {
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.navbar-inverse {
+    background-color: #272c40;
+    border-color: #272c40;
+}
+
+.navbarText {
+    color: #c5d956;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #c5d956;
+}
+
+blockquote {
+    border-left: 2px solid #eee;
+}
+
+.navbar-form {
+    margin-left: -16px;
+}
+
+li {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+}
+
+.btn {
+    background-color: #3CAA8D;
+    color: #FFFFFF;
+    border-color: #3CAA8D;
+}
+
+.btn :hover {
+    color: #FFFFFF;
+}
+
+.dashboard-box {
+    background: aquamarine;
+    text-align: center;
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+}
+
+.carousel-caption {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 3);
+}

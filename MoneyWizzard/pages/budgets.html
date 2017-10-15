@@ -1,0 +1,89 @@
+<div class="well" style="text-align: center; background-color: #3CAA8D ; border: #3caa8d">
+    <a class="active section" style="color: #FFFFFF"><i class="money icon"></i>BUDGETS</a>
+</div>
+<div id="addsuccessfull" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" ng-click="closeModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Budget added successfully!</strong></div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+           <!-- <h2>Plan your budget</h2>-->
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" data-target="#addBudget">Add Budget</a></li>
+                <li><a data-toggle="tab" data-target="#viewBudget">View Monthly Budget</a></li>
+            </ul>
+            <br></br>
+            <div class="tab-content">
+                <div id="addBudget" class="tab-pane fade in active">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8" style="border: 1px solid #c7c9cb;  border-radius: 10px;box-shadow: 3px 3px #ececec">
+                            <br>
+                            <form name="budgetForm">
+                            <div class="form-group">
+                                <p><b>Amount:</b>
+                                    <input type="text" class="form-control" placeholder="Amount" ng-model="budget.amount" required ng-pattern="/^(0|[1-9][0-9]*)$/"></p>
+                            </div>
+                            <div class="form-group">
+                                <p><b>Month:</b>
+                                    <select class="form-control" ng-model="budget.month" ng-options="month for month in months" required>
+                                    </select></p>
+                            </div>
+                            <div class="form-group">
+                                <p><b>Year:</b>
+                                    <select class="form-control" ng-model="budget.year" ng-options="year for year in years" required>
+                                    </select></p>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF " ng-disabled="(budgetForm.$invalid)"ng-click="addBudget()">Add Budget</button>
+                            </div>
+                            </form>
+                        </div>
+
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                </div>
+                <div id="viewBudget" class="tab-pane fade in">
+                    <div class="row">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-8" style="border: 1px solid #c7c9cb;  border-radius: 10px ;box-shadow: 3px 3px #ececec">
+                            <br>
+                            <table class="table table-bordered table-hover table-responsive">
+                                <thead>
+                                <th class="columndata">Month</th>
+                                <th class="columndata">Year</th>
+                                <th class="columndata">Amount</th>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="budget in budgets">
+                                    <td class="columndata">{{budget.month}}</td>
+                                    <td class="columndata">{{budget.year}}</td>
+                                    <td class="columndata">{{budget.amount}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+</div>

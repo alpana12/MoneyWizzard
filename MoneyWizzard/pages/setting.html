@@ -1,0 +1,100 @@
+<div class="well" style="text-align: center; background-color: #3CAA8D ; border: #3caa8d">
+    <a class="active section" style="color: #FFFFFF"><i class="user icon"></i>Profile</a>
+</div>
+<div id="profileupdate" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal" aria-label="close" ng-click="closeModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Profile updated successfully!</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+
+
+        <div class="col-md-10" >
+            <div class="row">
+                <!--<div class="well">
+                    <h3>Your profile</h3>
+                </div>-->
+                <div class="col-md-3" >
+                    </div>
+                <div class="col-md-6 panel panel-default panel-body" style="box-shadow: 3px 3px #ececec">
+                    <form name="profileform" novalidate >
+
+                        <div class="form-group">
+                            <p><b>Name</b>
+                            <input type="text" class="form-control" ng-model="name" name="name" required
+                                   ng-pattern="/^(\D)+$/" ng-disabled="button" ng-init="button=true">
+                            <span ng-show="profileform.name.$error.required && profileform.name.$touched">Your name is required!</span>
+                            <span ng-show="profileform.name.$error.pattern">Name is invalid!</span></p>
+                        </div>
+
+
+                        <div class="form-group">
+                            <p><b>Phone Number</b>
+                            <input type="number" class="form-control" ng-model="phoneNumber" name="phoneNumber" required
+                                   ng-minlength = "10" ng-maxlength = "10" ng-disabled="button" ng-init="button=true">
+
+                            <span ng-show="profileform.phoneNumber.$error.required && profileform.phoneNumber.$touched">Your contact number is required!</span>
+                            <span ng-show="(profileform.phoneNumber.$error.minlength || profileform.phoneNumber.$error.maxlength)">Valid phone number is required!</span></p>
+                        </div>
+
+
+                        <div class="form-group">
+                            <p><b>Email</b>
+                            <input type="email" class="form-control" ng-model="emailId" name="email" required
+                                   ng-disabled="button" ng-init="button=true">
+                            <span ng-show="profileform.email.$error.required && profileform.email.$touched">Provide an email address!</span>
+                            <span ng-show="profileform.email.$error.email">This email format is invalid!</span></p>
+                        </div>
+
+
+                        <div class="form-group" equals>
+                            <p><b>Password</b>
+                            <input type="password" class="form-control" ng-model="password" name="password"
+                                    ng-disabled="button" ng-init="button=true"></p>
+<!--                            <span ng-show="profileform.password.$error.required && profileform.password.$touched">Enter a password.</span>-->
+                        </div>
+                        <button type="button" class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF " ng-click="button=false">
+                            <span class="glyphicon glyphicon-pencil"></span> Edit
+                        </button>
+                        <button  class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF " ng-disabled="profileform.$invalid" ng-click="updateProfile()" >Save</button>
+                        <br/>
+                    </form>
+                </div>
+                <div class="col-md-3" >
+                </div>
+            </div>
+
+            <!--<div class="row">
+                <div class="well">
+                    <h3>Additional Setting</h3>
+                </div>
+                <div class="col-md-8 col-md-offset-2">
+                    <a href="#" ng-click="openDeleteModal()">Delete Account</a>
+                    <div id="deleteModal" class="modal" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5>Are you sure you want to delete the account?</h5>
+                                    <button type="button" class="btn btn-default btn-primary" ng-model="yesbtn">YES</button>
+                                    <button type="button" class="btn btn-default btn-primary" ng-model="nobtn">NO</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+        <div class="col-md-1">
+        </div>
+    </div>
+</div>

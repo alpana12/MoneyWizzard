@@ -1,0 +1,138 @@
+<div class="well" style="text-align: center; background-color: #3CAA8D ; border: #3caa8d">
+    <a class="active section" style="color: #FFFFFF"><span class="glyphicon glyphicon-plus"></span> EXPENSES</a>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10">
+            <br></br>
+            <!-- Personal Expense Panel -->
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#personalExpense">
+                        <h4 class="panel-title">
+                            <a ><span class="glyphicon glyphicon-plus-sign"></span>Personal Expense</a>
+                        </h4>
+                    </div>
+                    <div id="personalExpense" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <form name="personalExpenseForm">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Description" ng-model="personal.description" name="personalItem" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Amount" ng-model="personal.amount" name="personalAmount" required ng-pattern="/^(0|[1-9][0-9]*)$/">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Location" ng-model="personal.location" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="category">Select Category:</label>
+                                    <select class="form-control" ng-model="selectedCategory" ng-options="category.name for category in categories" required>
+                                        <!--<option ng-repeat="category in categories" data-id="category.id">{{category.name}}</option>-->
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF "ng-disabled="(personalExpenseForm.$invalid)" ng-click="addPeronalExpense()">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Personal Expense Modal -->
+                <!-- Group Expense Panel -->
+                <div class="panel panel-default">
+                    <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#groupExpense">
+                        <h4 class="panel-title">
+                            <a><span class="glyphicon glyphicon-plus-sign"></span>Group Expense</a>
+                        </h4>
+                    </div>
+                    <div class="panel-body panel-collapse collapse" id="groupExpense">
+                        <form name="groupexpenseform">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Description" ng-model="group.description" name="groupItem" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Amount" ng-model="group.amount" name="groupAmount" required ng-pattern="/^(0|[1-9][0-9]*)$/">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Location" ng-model="group.location" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Select Category:</label>
+                                <select class="form-control" ng-model="selectedCategoryGroup" ng-options="category.name for category in categories" required>
+                                <!--<select class="form-control" ng-model="category">
+                                    <option ng-repeat="category in categories">{{category}}</option>
+                                </select>-->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label >Select Group:</label>
+                                <select class="form-control" ng-model="selectedGroup" ng-options="group.name for group in groups" ng-click="populateFriends(group)" required>
+                                    <!--<option ng-repeat="group in groups">{{group}}</option>-->
+                                </select>
+                            </div>
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th style="width: 60%"> Friends </th>
+                                    <th class ="columndata" style="text-align: left;"> Amount </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="member in groupMembers">
+                                    <td>{{member.personName}}</td>
+                                    <td>
+                                        <div class="form-group" style="width: 80px">
+                                            <input type="text" class="form-control" placeholder="Share" ng-model="member.youOwe">
+                                        </div>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <button type="submit" class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF " ng-disabled="(groupexpenseform.$invalid)" ng-click="addGroupExpense()">Add</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- End Group Expense Panel -->
+            </div>
+            <!-- Personal Expenses List -->
+            <h3>Personal Expenses</h3>
+            <table class="table table-hover table-css">
+                <tr>
+                    <th> Description </th>
+                    <th class ="columndata"> Amount </th>
+                    <th class ="columndata"> Date </th>
+                </tr>
+                <tr ng-repeat="exp in expenses">
+                    <td>{{exp.location}}</td>
+                    <td class ="columndata">{{exp.amount}}</td>
+                    <td class ="columndata">{{exp.date}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+</div>
+
+
+<div id="addsuccessfull" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" ng-click="closeSuccessModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Personal expense added successfully!</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="groupaddsuccessfull" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" ng-click="closeGroupSuccessModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Group Expense added successfully!</strong></div>
+            </div>
+        </div>
+    </div>
+</div>

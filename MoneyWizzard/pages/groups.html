@@ -1,0 +1,133 @@
+<div class="well" style="text-align: center; background-color: #3CAA8D ; border: #3caa8d">
+    <a class="active section" style="color: #FFFFFF"><i class="users icon"></i>GROUPS</a>
+</div>
+<div id="addsuccessfull" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal" aria-label="close" ng-click="closeSuccessModal()">&times;</a>
+                <div class="modal-title success" > <i class="checkmark icon"></i><strong>Group added successfully!</strong></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-10" style="border: 1px solid #c7c9cb; border-radius: 10px;">
+            <form class="navbar-form" role="search">
+                <button class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF " type="submit" ng-click="openAddGroupModal()" ><i class="add user icon"></i>Add</button>
+            </form>
+            <div class="panel-group" id="accordion">
+                    <div ng-repeat="group in groups">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" data-target="#{{group.name}}">
+                                <div class="panel-title">
+                                    <a>{{group.name}}</a>
+                                </div>
+                            </div>
+                            <div ng-attr-id="{{group.name}}" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <button class="btn btn-default" style="background-color: #3CAA8D  ; color: #FFFFFF " data-toggle="collapse" data-target="#{{group.id}}">MEMBERS</button>
+                                    <div class="collapse" id="{{group.id}}">
+                                        <table class="table">
+                                            <tr ng-repeat="member in group.personObjs">
+                                                <td>{{member.personName}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <table class="table table-css" >
+                                        <thead>
+                                        <th>Item</th>
+                                        <th class ="columndata">Amount</th>
+                                        <th class ="columndata">Paid By</th>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="exp in group.expenseObjs">
+                                            <td>
+                                                <a data-toggle="modal" data-target="#splitModal" ng-click="populateExpenseModal(exp.person)" >{{exp.comment}}</a>
+                                            </td>
+                                            <td class ="columndata">
+                                                {{exp.amount}}
+                                            </td>
+                                            <td class ="columndata">
+                                                {{exp.personName}}
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!--May be modal will go over here-->
+                    </div>
+            </div>
+            <div class="col-md-1">
+            </div>
+            <div id="graph1"></div>
+        </div>
+    </div>
+</div>
+<!-- Add Group Modal -->
+<div id="createGroupModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal" aria-label="close" ng-click="closeModal()">&times;</a>
+                <h4 class="modal-title">Add Group</h4>
+            </div>
+            <div class="modal-body">
+                <form name="addgroupForm" novalidate>
+                    <div class="form-group">
+                        <input type="text" class="form-control" ng-model="grpname" name="grpname" placeholder="Group Name" required
+                               ng-pattern="/^(\D)+$/">
+                    </div>
+                    <div class="form-group">
+                        <label for="friendList">Friends</label>
+                        <select multiple class="form-control" id="friendList" ng-model="selectedValue">
+                            <option ng-repeat="x in friends" data-id="{{x.id}}">{{x.personName}}</option>
+                        </select>
+                    </div>
+                    <button style="background-color: #3CAA8D  ; color: #FFFFFF " type="submit" class="btn btn-default" ng-click="addGroup()" ng-disabled="addgroupForm.$invalid">Add</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Group Modal -->
+<!-- Add Group Modal -->
+<div id="splitModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal" aria-label="close">&times;</a>
+                <h4 class="modal-title">Details</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table columndata ">
+                    <thead>
+                    <th class=" columndata ">Name</th>
+                    <th class=" columndata ">Amount</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="x in expDetails">
+                        <td>
+                            {{x.personName}}
+                        </td>
+                        <td >
+                            {{x.youOwe}}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col"></div>
+</div>
+
+<!-- End Group Modal -->

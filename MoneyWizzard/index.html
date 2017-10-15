@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Money Wizzard</title>
+
+    <!--Script Start-->
+    <!--Angular JS-->
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular-animate.min.js"></script>
+    <script src="lib/angular/angular-ui-router.js"></script>
+
+    <!-- jQuery -->
+    <script src="lib/jQuery/jquery-1.11.1.js"></script>
+    <script src="lib/jQuery/jquery.validate.js"></script>
+
+    <!--Bootstrap-->
+    <script src="lib/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Symantic UI-->
+    <script src="lib/symanticUI/semantic.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <!-- Service -->
+    <script src="js/service/home.js"></script>
+    <script src="js/service/profile.js"></script>
+    <script src="js/service/dashboard.js"></script>
+    <script src="js/service/friends.js"></script>
+    <script src="js/service/groups.js"></script>
+    <script src="js/service/expenses.js"></script>
+    <script src="js/service/budgets.js"></script>
+    <script src="js/service/wallet.js"></script>
+
+    <!-- Controllers -->
+    <script src="js/controllers/dashboard.js"></script>
+    <script src="js/controllers/setting.js"></script>
+    <script src="js/controllers/home.js"></script>
+    <script src="js/controllers/friends.js"></script>
+    <script src="js/controllers/groups.js"></script>
+    <script src="js/controllers/expenses.js"></script>
+    <script src="js/controllers/budgets.js"></script>
+    <script src="js/controllers/wallet.js"></script>
+    <!--Count Up-->
+    <script src="lib/countUp/countUp-jquery.js"></script>
+    <script src="lib/countUp/angular-countUp.js"></script>
+    <script src="lib/countUp/countUp.js"></script>
+
+    <!-- HighCharts-->
+    <script src="lib/highcharts/highcharts.js"></script>
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+
+    <!-- Script End-->
+
+    <!-- CSS Start-->
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+
+    <!-- Symantic UI-->
+    <link rel="stylesheet" href="lib/symanticUI/semantic.css">
+
+    <!--Font-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet'  type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!--Datepicker-->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-inverse" style="margin-bottom: 0px;border-radius: 0px">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" ui-sref="home" style="font-family: 'Raleway', sans-serif;"><div style="display: inline"><img src="images/logo.png" alt="" style="height: 100%;"></div><span class="navbarText" style="font-weight: bold;"> MONEY WIZZARD</span></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="isLoggedIn"><a ng-controller="navBarController" ng-click="signOut()"><i class="navbarText sign out icon"></i>Sign out</a></li>
+                    <li ng-hide="isLoggedIn"><a href="#" data-toggle="modal" data-target="#loginModal"><i class="navbarText sign in icon"></i>Sign in</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mySidenav" class="sidenav" ng-show="isLoggedIn">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a class="item" ui-sref="dashboard"  onclick="closeNav()" >
+            <i class="dashboard icon"></i>
+            Dashboard
+        </a>
+        <a class="item" ui-sref="setting" onclick="closeNav()">
+            <i class="user icon"></i>
+            Profile
+        </a>
+        <a class="item" ui-sref="friends" onclick="closeNav()">
+            <i class="glyphicon glyphicon-star"></i>
+            Friends
+        </a>
+        <a class="item" ui-sref="groups" onclick="closeNav()">
+            <i class="users icon"></i>
+            Groups
+        </a>
+        <a class="item" ui-sref="expenses" onclick="closeNav()">
+            <span class="glyphicon glyphicon-plus"></span>
+            Expenses
+        </a>
+        <a class="item" ui-sref="budgets" onclick="closeNav()">
+            <i class="money icon"></i>
+            Budget
+        </a>
+        <a class="item" ui-sref="wallet" onclick="closeNav()">
+            <i class="payment icon"></i>
+            Wallet
+        </a>
+    </div>
+    <span ng-show="isLoggedIn" style="z-index: 1;font-size:25px;cursor:pointer;position: fixed;top: 17%;" onclick="openNav()"><span class="glyphicon glyphicon-menu-hamburger" style="color: #fff;background: black;border-radius: 0% 15% 15% 0%;padding: 10%;"></span></span>
+
+    <ui-view></ui-view>
+    <script>
+        function openNav() {
+            $("#mySidenav").css("width","250px");
+        }
+
+        function closeNav() {
+            $("#mySidenav").css("width","0");
+        }
+    </script>
+
+</div>
+</body>
+</html>

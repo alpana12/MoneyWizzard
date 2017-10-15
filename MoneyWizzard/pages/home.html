@@ -1,0 +1,268 @@
+<div class="well">
+    <a class="active section"><i class="home icon"></i>HOME</a>
+</div>
+
+<!--Carousel-->
+
+<div class="container" id="carousel">
+    <section id="featureCarousel">
+        <div class="carousel slide" id="screenshot-carousel" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li class="active" data-target="#screenshot-carousel" data-slide-to="0"></li>
+                <li data-target="#screenshot-carousel" data-slide-to="1"></li>
+                <li data-target="#screenshot-carousel" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img class="carImage" src="Images/money_transfer.png" alt="city"/>
+                    <div class="carousel-caption">
+                        <h1>
+                            Money wizard makes finance a cakewalk
+                        </h1>
+                    </div>
+                </div>
+                <div class="item">
+                    <img class="carImage" src="Images/MobileAppsConcept.jpg" alt="city"/>
+                    <div class="carousel-caption">
+                        <h1>
+                            All your money managed at one place!
+                        </h1>
+                    </div>
+                </div>
+                <div class="item">
+                    <img class="carImage" src="Images/bg5.jpg" alt="city"/>
+                    <div class="carousel-caption">
+                        <h1>
+                            Get deatiled reports of how you spent your money
+                        </h1>
+                    </div>
+                </div>
+            </div>
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#screenshot-carousel" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#screenshot-carousel" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+</div>
+
+
+<!--End Carousel-->
+
+<!--Jumbotron-->
+<div class="jumbotron" id="jumbotron">
+    <div class="container text-center">
+        <h2>Money Wizard</h2>
+        <p>
+            Split expenses with friends.
+            Share bills and IOUs. Make sure everyone gets paid back. Let Money Wizard do the magic for you!
+        </p>
+    </div>
+</div>
+<!--End jumbotron-->
+
+<!--Feedback section-->
+<div class="container">
+    <section>
+        <div class="page-header" id="feedback">
+            <h2>Feedback
+                <small>Check out what others are saying</small>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <blockquote cite="http://">
+                    <p>
+                        Awesome Site One stop to track and split your hills. Earlier i was using another app, but was
+                        scared to use that because it was reading SMS from mobile.</p>
+                    <footer>Times now</footer>
+                </blockquote>
+            </div>
+            <div class="col-lg-4">
+                <blockquote cite="http://">
+                    <p>
+                        Sharing Situations A very useful tool, especially when living in shared places. Helps you keep
+                        track of money lending - borrowing with a few taps and never forgets... </p>
+                    <footer>Boston Globe</footer>
+                </blockquote>
+            </div>
+            <div class="col-lg-4">
+                <blockquote cite="http://">
+                    <p>
+                        This is too good to be true Can split according to share, percentage, auto split equal. Easy to
+                        use, best for travelling in group. Multiple currencies available. Excellent! Can't be better
+                    </p>
+                    <footer>New York Times</footer>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+</div>
+<!--End Feedback section-->
+
+<!--Well section for call to action-->
+<div class="well">
+    <section> <!--call to action-->
+        <div class="container text-center">
+            <h3>And best of all? It's totally free.
+                Ready to give Money Wizard a spin? </h3>
+
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <form name="signupform" novalidate>
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Name" ng-model="name" name="name" required
+                               ng-pattern="/^(\D)+$/">
+                        <span ng-show="signupform.name.$error.required && signupform.name.$touched">Your name is required!</span>
+                        <span ng-show="signupform.name.$error.pattern">Name is invalid!</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email" ng-model="emailId" name="email"
+                               required>
+                        <span ng-show="signupform.email.$error.required && signupform.email.$touched">Provide an email address!</span>
+                        <span ng-show="signupform.email.$error.email">This email format is invalid!</span>
+                    </div>
+                    <div class="form-group" equals>
+                        <input type="password" class="form-control" placeholder="Password" ng-model="password"
+                               name="password" required
+                               equals="{{confirmpassword}}">
+                        <span ng-show="signupform.password.$error.required && signupform.password.$touched">Enter a password.</span>
+                    </div>
+                    <div class="form-group" equals>
+                        <input type="password" class="form-control" id="pwd2" placeholder="Confirm Password"
+                               ng-model="confirmpassword" name="confirmpassword"
+                               required equals="{{password}}">
+                        <span ng-show="signupform.confirmpassword.$error.required && signupform.confirmpassword.$touched">Re-Enter the password.</span>
+                        <span ng-show="signupform.confirmpassword.$error.equals">Passwords do not match!</span>
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" ng-model="checked" value=""><label>I agree to Money Wizard's <b>Terms &
+                        Conditions</b> </label>
+                    </div>
+                    <button style="background-color: #3CAA8D; color: #FFFFFF" type="submit"
+                            class="btn btn-default btn-primary" ng-click="signUp()"
+                            ng-disabled="(signupform.$invalid || !checked)">Create Account
+                    </button>
+                    <br/>
+                </form>
+            </div>
+            <div class="col-sm-3"></div>
+
+        </div>
+    </section>
+</div>
+<!--End Well section-->
+
+<!--Features section-->
+<div class="container features">
+    <section>
+        <div class="page-header" id="features">
+            <h2>Features
+                <small>Some of the coolest feaures of the app</small>
+            </h2>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <h2>We do the math for you</h2>
+                <p>
+                    Money Wizard keeps a running total over time, so you can pay each other back in one big payment,
+                    instead of a bunch of small ones </p>
+            </div>
+            <div class="col-lg-4">
+                <img src="images/bills.jpg" alt="" class="img-responsive featureImg" style="height: 300px;"/>
+            </div>
+        </div>
+        <hr>
+        <div class="row" style="background-color: #f7f7f7">
+            <div class="col-lg-8">
+                <h2>Send and receive money instantly</h2>
+                <p>Send money to anyone in the US using an email address or phone number. It's fast, easy, and free to
+                    send directly from your debit card, bank account, or Wallet Balance. You can do all this in the
+                    Google Wallet app, or, if you’re on desktop, you can also send and request money in Gmail. When you
+                    receive money, you can quickly cash out to your bank account using your debit card, and get access
+                    to your money within minutes.
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <img src="images/c2.jpg" alt="" class="img-responsive featureImg" style="height: 300px;"/>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-lg-8">
+                <h2>Keep your money safe</h2>
+                <p>Keep your money safe Your Money Wallet app can only be accessed with your Wizard PIN. If your phone
+                    is ever lost or stolen, you can instantly remove access to your account on that phone at
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <img src="Images/safe.jpg" alt="" class="img-responsive featureImg" style="height: 300px;"/>
+            </div>
+        </div>
+        <hr>
+    </section>
+</div>
+<!--End Features section-->
+
+<!--Footer-->
+<div class="panel-footer text-center">Copyright © 2016 Money Wizard, Inc. All rights reserved.
+</div>
+<!--End Footer-->
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Enter Login details</h4>
+            </div>
+            <div class="modal-body">
+                <form name="loginForm" novalidate>
+                    <div class="form-group">
+                        <input type="email" class="form-control" placeholder="Email" ng-model="loginData.emailId" name="email" required >
+                        <span ng-show="loginForm.email.$error.email">This email format is invalid!</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required
+                               ng-model="loginData.password">
+                    </div>
+                    <div class="form-group">
+                        <span class="label label-danger" ng-bind="status" id="status"></span>
+                    </div>
+                    <button style="background-color: #3CAA8D; color: #FFFFFF" type="submit" class="btn btn-default"
+                            ng-click="login()" ng-disabled="loginForm.$invalid">Login
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Login Modal -->
+
+<!--Sign up response modal-->
+
+<div id="signUpModal" class="modal" role="dialog" style="position: fixed; top: 0px;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Sign up</h4>
+            </div>
+            <div class="modal-body">
+                <p ng-bind="signUpStatus" id="signUpStatus"></p>
+            </div>
+            <div class="modal-footer">
+                <button style="background-color: #3CAA8D; color: #FFFFFF" type="button" class="btn btn-default"
+                        data-dismiss="modal">Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End Sign up response modal-->
